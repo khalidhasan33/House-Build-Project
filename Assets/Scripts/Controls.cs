@@ -94,11 +94,11 @@ public class Controls : MonoBehaviour {
 
         //drawmode == FLOOR
         else if (drawMode == DrawMode.FLOOR) {
-            if (Input.GetMouseButtonDown(0)) {
+            if (Input.touches.Any(x => x.phase == TouchPhase.Began)) {
                 mouseDown = true;
                 mouseWorldPos1 = mousePosThisFrame;
             }
-            if (Input.GetMouseButtonUp(0)) {
+            if (Input.touches.Any(x => x.phase == TouchPhase.Ended)) {
                 mouseDown = false;
                 gameController.FinalizeFloor();
                 dragging = false;
@@ -150,7 +150,17 @@ public class Controls : MonoBehaviour {
         selector.transform.position = mousePosThisFrame;
     }
 
-    void DrawModeWall() {
+    public void FloorUp()
+    {
+        gameController.FloorUp();
+    }
+
+    public void FloorDown()
+    {
+        gameController.FloorDown();
+    }
+
+    public void DrawModeWall() {
         drawMode = DrawMode.WALL;
         UIcontroller.UpdateIcon();
         selector.transform.GetChild(0).GetComponent<MeshFilter>().mesh = selectorMesh;
@@ -160,7 +170,7 @@ public class Controls : MonoBehaviour {
         }
     }
 
-    void DrawModeFloor() {
+    public void DrawModeFloor() {
         drawMode = DrawMode.FLOOR;
         UIcontroller.UpdateIcon();
         selector.transform.GetChild(0).GetComponent<MeshFilter>().mesh = planeMesh;
@@ -170,7 +180,7 @@ public class Controls : MonoBehaviour {
         }
     }
 
-    void DrawModeDelete() {
+    public void DrawModeDelete() {
         drawMode = DrawMode.DELETE;
         UIcontroller.UpdateIcon();
         selector.transform.GetChild(0).GetComponent<MeshFilter>().mesh = null;
