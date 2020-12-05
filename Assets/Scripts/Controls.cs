@@ -67,11 +67,11 @@ public class Controls : MonoBehaviour {
 
         //TODO: if wall length == 0 don't build
         if (drawMode == DrawMode.WALL) {
-            if (Input.touches.Any(x => x.phase == TouchPhase.Began)) {
+            if (Input.GetMouseButtonDown(0)) {
                 mouseDown = true;
                 mouseWorldPos1 = mousePosThisFrame;
             }
-            if (Input.touches.Any(x => x.phase == TouchPhase.Ended)) {
+            if (Input.GetMouseButtonUp(0)) {
                 mouseDown = false;
                 gameController.FinalizeWall();
                 dragging = false;
