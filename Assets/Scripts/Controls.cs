@@ -94,11 +94,11 @@ public class Controls : MonoBehaviour {
 
         //drawmode == FLOOR
         else if (drawMode == DrawMode.FLOOR) {
-            if (Input.touches.Any(x => x.phase == TouchPhase.Began)) {
+            if (Input.GetMouseButtonDown(0)) {
                 mouseDown = true;
                 mouseWorldPos1 = mousePosThisFrame;
             }
-            if (Input.touches.Any(x => x.phase == TouchPhase.Ended)) {
+            if (Input.GetMouseButtonUp(0)) {
                 mouseDown = false;
                 gameController.FinalizeFloor();
                 dragging = false;

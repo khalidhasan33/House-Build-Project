@@ -8,6 +8,5 @@ public class Floor : Building {
 
     public void SetPosition(Vector2 newPos) {
         this.position = newPos;
-        //this.transform.position = position;
     }
 }
