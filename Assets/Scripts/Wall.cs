@@ -17,10 +17,13 @@ public class Wall : Building{
         this.position2 = pos2;
     }
 
-    public void UpdateWall() {        
-        this.distance = Vector3.Distance(position1, position2);
-        this.transform.localScale = new Vector3(1,1,distance);
-        this.transform.LookAt(position2);
-        this.transform.GetChild(0).GetComponent<Renderer>().material.mainTextureScale = new Vector2(distance/2, 1);
+    public void UpdateWall() {
+        if(position1 != position2)
+        {
+            this.distance = Vector3.Distance(position1, position2);
+            this.transform.localScale = new Vector3(1, 1, distance);
+            this.transform.LookAt(position2);
+            this.transform.GetChild(0).GetComponent<Renderer>().material.mainTextureScale = new Vector2(distance / 2, 1);
+        }
     }
 }
